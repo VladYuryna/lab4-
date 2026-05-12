@@ -1,0 +1,47 @@
+def celsius_to_fahrenheit(celsius):
+    fahrenheit = celsius * 9 / 5 + 32
+    return fahrenheit
+
+def fahrenheit_to_celsius(fahrenheit):
+    celsius = (fahrenheit - 32) * 5 / 9
+    return celsius
+
+def is_valid_temperature(value, scale):
+    valid = False
+    if scale == "C":
+        if value >= -273.15:
+            valid = True
+    elif scale == "F":
+        if value >= -459.67:
+            valid = True
+    return valid
+
+print("Конвертер температури")
+print("1 - Цельсій -> Фаренгейт")
+print("2 - Фаренгейт -> Цельсій")
+
+choice = 1
+print("Оберіть напрямок (1-2):", choice)
+
+if choice == 1:
+    temp = 100.0
+    print("Введіть температуру у C:", temp)
+    check = is_valid_temperature(temp, "C")
+    if check == True:
+        result = celsius_to_fahrenheit(temp)
+        print("Результат:", round(result, 2), "F")
+    else:
+        print("Температура нижча за абсолютний нуль")
+
+elif choice == 2:
+    temp = 32.0
+    print("Введіть температуру у F:", temp)
+    check = is_valid_temperature(temp, "F")
+    if check == True:
+        result = fahrenheit_to_celsius(temp)
+        print("Результат:", round(result, 2), "C")
+    else:
+        print("Температура нижча за абсолютний нуль")
+
+else:
+    print("Невірний вибір")
