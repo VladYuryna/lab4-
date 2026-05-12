@@ -1,0 +1,61 @@
+class Student:
+    def __init__(self, name, grade1, grade2, grade3):
+        self.name = name
+        self.grade1 = grade1
+        self.grade2 = grade2
+        self.grade3 = grade3
+
+    def average(self):
+        total = self.grade1 + self.grade2 + self.grade3
+        avg = total / 3
+        return avg
+
+    def display(self):
+        avg = self.average()
+        avg = round(avg, 1)
+        print(self.name, "| оцінки:", self.grade1, self.grade2, self.grade3, "| середній бал:", avg)
+
+def find_best_student(students):
+    best = students[0]
+    i = 1
+    while i < len(students):
+        if students[i].average() > best.average():
+            best = students[i]
+        i = i + 1
+    return best
+
+def find_at_risk(students):
+    result = []
+    i = 0
+    while i < len(students):
+        avg = students[i].average()
+        if avg < 60:
+            result.append(students[i])
+        i = i + 1
+    return result
+
+students = [
+    Student("Олександр", 85, 90, 78),
+    Student("Марія", 55, 48, 62),
+    Student("Дмитро", 92, 88, 95),
+    Student("Анна", 40, 50, 45),
+]
+
+print("Журнал студентів")
+i = 0
+while i < len(students):
+    students[i].display()
+    i = i + 1
+
+best = find_best_student(students)
+print("Найкращий студент:", best.name, "| середній бал:", round(best.average(), 1))
+
+at_risk = find_at_risk(students)
+if len(at_risk) > 0:
+    print("Під загрозою відрахування:")
+    i = 0
+    while i < len(at_risk):
+        at_risk[i].display()
+        i = i + 1
+else:
+    print("Всі студенти мають прохідний бал")
