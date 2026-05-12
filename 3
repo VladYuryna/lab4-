@@ -1,0 +1,44 @@
+def reverse_number(n):
+    result = 0
+    temp = n
+    while temp > 0:
+        last = temp % 10
+        result = result * 10 + last
+        temp = temp // 10
+    return result
+
+def is_palindrome(n):
+    reversed_n = reverse_number(n)
+    if n == reversed_n:
+        return True
+    else:
+        return False
+
+def count_divisors(n):
+    count = 0
+    i = 1
+    while i <= n:
+        if n % i == 0:
+            count = count + 1
+        i = i + 1
+    return count
+
+def print_report(n, reversed_n, palindrome, divisors):
+    print("Число:", n)
+    print("Задом наперед:", reversed_n)
+    if palindrome == True:
+        print("Паліндром: Так")
+    else:
+        print("Паліндром: Ні")
+    print("Кількість дільників:", divisors)
+
+n = 12321
+print("Введіть ціле додатне число:", n)
+
+if n <= 0:
+    print("Число повинно бути додатним")
+else:
+    reversed_n = reverse_number(n)
+    palindrome = is_palindrome(n)
+    divisors = count_divisors(n)
+    print_report(n, reversed_n, palindrome, divisors)
